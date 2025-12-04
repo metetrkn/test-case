@@ -1,0 +1,24 @@
+<configuration>
+
+    <!-- Write only your logs to file -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/email-consumer.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Disable noisy Kafka logs -->
+    <logger name="org.apache.kafka" level="WARN"/>
+    <logger name="org.apache.kafka.clients" level="WARN"/>
+    <logger name="org.apache.kafka.common.config" level="ERROR"/>
+
+    <!-- Only log your own project at INFO -->
+    <logger name="org.consumer" level="INFO"/>
+
+    <root level="WARN">
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
